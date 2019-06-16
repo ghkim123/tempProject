@@ -96,10 +96,10 @@ public class Database {
 		return ret;
 	}
 	
-	public void update(String userId, final String tableName, final String rating) {
+	public void update(String userId, final String tableName, final String rating, final String date) {
 		String updateSQL = "UPDATE " + tableName + "\r\n"
 				+ "SET rating = '" + rating + "'\r\n"
-				+ "WHERE userid = \'" + userId + "\' AND today = sysdate()";
+				+ "WHERE userid = \'" + userId + "\' AND today = '" + date + "'";
 		System.out.println(updateSQL);
 		try {
 			Statement stmt = con.createStatement();
@@ -138,7 +138,7 @@ public class Database {
 			String insertSQL = "INSERT INTO " + tableName + "(userid, today, list, numberofproblem)\r\n" + 
 					"VALUES('" + userId + "', sysdate(), '" + list +"', " + crawledData.size() + ")"
 							+ " ON DUPLICATE KEY UPDATE userid='" + userId + "', today=sysdate();";
-			System.out.println(insertSQL);
+//			System.out.println(insertSQL);
 //			String selectSQL = "INSERT INTO solvedproblem"
 //					+ " VALUES('" + userId + "', sysdate(),'" + number + "')"
 //					+ " ON DUPLICATE KEY UPDATE userid='" + userId + "', date=sysdate();";
